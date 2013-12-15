@@ -46,6 +46,11 @@ namespace Chatwork.Service.ConsoleApp
             var createdTask = client.Room.GetTaskInfoAsync(mychat.room_id, createdTaskId.task_ids.First()).Result;
             Console.WriteLine("作成したタスク: {0}", createdTask.body);
 
+            var files = client.Room.GetFilesAsync(mychat.room_id).Result;
+            var file = client.Room.GetFilAsync(mychat.room_id, files.First().file_id).Result;
+            Console.WriteLine(file.account.account_id);
+            var fileWithUrl = client.Room.GetFilAsync(mychat.room_id, files.First().file_id, true).Result;
+            Console.WriteLine("ダウロードURL(30sec有効): " + fileWithUrl.download_url);
             Console.WriteLine("何かキーを押して終了してください...");
             Console.ReadKey();
         }

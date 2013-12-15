@@ -184,6 +184,7 @@ namespace Chatwork.Service
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime upload_time { get; set; }
+        public string download_url { get; set; }
     }
 
 }

@@ -136,6 +136,10 @@ namespace Chatwork.Service
             {
                 text = ((DateTime) value).ToUnixTime().ToString();
             }
+            else if (value is bool)
+            {
+                text = (bool)value ? "1" : "0";
+            }
             else
             {
                 text = value.ToString();
@@ -223,7 +227,7 @@ namespace Chatwork.Service
             DateTime? limit = null);
         Task<TaskInfoModel> GetTaskInfoAsync(int room_id, int task_id);
         Task<IList<FileModel>> GetFilesAsync(int room_id);
-        Task<FileModel> GetFilAsync(int room_id, int file_id, bool? create_download_url = null);
+        Task<FileModel> GetFilAsync(int room_id, int file_id, bool create_download_url = false);
     }
 
     public partial class ChatworkClient // IRoom
@@ -342,7 +346,7 @@ namespace Chatwork.Service
             return GetAsync<IList<FileModel>>("/rooms/" + room_id + "/files");
         }
 
-        Task<FileModel> IRoom.GetFilAsync(int room_id, int file_id, bool? create_download_url = null)
+        Task<FileModel> IRoom.GetFilAsync(int room_id, int file_id, bool create_download_url = false)
         {
             return GetAsync<FileModel>("/rooms/" + room_id + "/files/" + file_id
                 , new KeyValuePair<string, object>("create_download_url", create_download_url));
