@@ -225,7 +225,7 @@ namespace Chatwork.Service
             string body,
             IEnumerable<int> to_ids,
             DateTime? limit = null);
-        Task<TaskInfoModel> GetTaskInfoAsync(int room_id, int task_id);
+        Task<TaskModel> GetTaskInfoAsync(int room_id, int task_id);
         Task<IList<FileModel>> GetFilesAsync(int room_id);
         Task<FileModel> GetFilAsync(int room_id, int file_id, bool create_download_url = false);
     }
@@ -336,9 +336,9 @@ namespace Chatwork.Service
                 , new KeyValuePair<string, object>("limit", limit));
         }
 
-        Task<TaskInfoModel> IRoom.GetTaskInfoAsync(int room_id, int task_id)
+        Task<TaskModel> IRoom.GetTaskInfoAsync(int room_id, int task_id)
         {
-            return GetAsync<TaskInfoModel>("/rooms/" + room_id + "/tasks/" + task_id);
+            return GetAsync<TaskModel>("/rooms/" + room_id + "/tasks/" + task_id);
         }
 
         Task<IList<FileModel>> IRoom.GetFilesAsync(int room_id)
