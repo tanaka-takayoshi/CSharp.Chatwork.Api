@@ -45,7 +45,6 @@ namespace Chatwork.Service
     public class MyTaskModel
     {
         public int task_id { get; set; }
-        public TaskRoomModel room { get; set; }
         public AssignedByAccountModel assigned_by_account { get; set; }
         public int message_id { get; set; }
         public string body { get; set; }
@@ -53,13 +52,6 @@ namespace Chatwork.Service
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime limit_time { get; set; }
         public string status { get; set; }
-    }
-
-    public class TaskRoomModel
-    {
-        public int room_id { get; set; }
-        public string name { get; set; }
-        public string icon_path { get; set; }
     }
 
     public class AssignedByAccountModel
@@ -135,7 +127,6 @@ namespace Chatwork.Service
     public class TaskModel
     {
         public int task_id { get; set; }
-        public TaskRoomModel room { get; set; }
         public AccountModel account { get; set; }
         public AssignedByAccountModel assigned_by_account { get; set; }
         public int message_id { get; set; }
@@ -159,21 +150,6 @@ namespace Chatwork.Service
         public int[] task_ids { get; set; }
     }
 
-
-    public class TaskInfoModel
-    {
-        public int task_id { get; set; }
-        public AccountModel account { get; set; }
-        public AssignedByAccountModel assigned_by_account { get; set; }
-        public int message_id { get; set; }
-        public string body { get; set; }
-        [JsonProperty]
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime limit_time { get; set; }
-        public string status { get; set; }
-    }
-
-
     public class FileModel
     {
         public int file_id { get; set; }
@@ -184,6 +160,7 @@ namespace Chatwork.Service
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime upload_time { get; set; }
+        public string download_url { get; set; }
     }
 
 }
