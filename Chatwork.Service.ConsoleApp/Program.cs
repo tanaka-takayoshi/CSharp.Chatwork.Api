@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,12 @@ namespace Chatwork.Service.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input auth key:");
-            var token = Console.ReadLine();
+            var token = ConfigurationManager.AppSettings["Token"];
+            if (string.IsNullOrEmpty(token))
+            {
+                Console.WriteLine("Input auth key:");
+                token = Console.ReadLine();
+            }
             var client = new ChatworkClient(token);
             var me = client.Me.GetAsync().Result;
             Console.WriteLine("あなたの所属:{0},氏名:{1},ID:{2}", me.organization_name, me.name, me.account_id);
