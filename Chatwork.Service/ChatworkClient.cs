@@ -99,12 +99,12 @@ namespace Chatwork.Service
 
         private async Task<TResult> SendAsync<TResult>(HttpRequestMessage request)
         {
-            var res = await httpClient.SendAsync(request);
+            var res = await httpClient.SendAsync(request).ConfigureAwait(false);
             if (res.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<TResult>(await res.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<TResult>(await res.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
-            throw new Exception();
+            throw new Exception(string.Format("Failed with code {0}. Message: {1}", res.StatusCode, await res.Content.ReadAsStringAsync()));
         }
 
         private async Task SendAsync(HttpMethod httpMethod, string path, params KeyValuePair<string, object>[] parameters)
@@ -115,12 +115,12 @@ namespace Chatwork.Service
                 Content = new FormUrlEncodedContent(parameters.Where(p => p.Value != null).Select(p => new KeyValuePair<string, string>(p.Key, ConvertToString(p.Value)))),
                 RequestUri = new Uri(BaseUri + path)
             };
-            var res = await httpClient.SendAsync(request);
+            var res = await httpClient.SendAsync(request).ConfigureAwait(false);
             if (res.IsSuccessStatusCode)
             {
                 return;
             }
-            throw new Exception();
+            throw new Exception(string.Format("Failed with code {0}. Message: {1}", res.StatusCode, await res.Content.ReadAsStringAsync()));
         }
 
         private string ConvertToString(object value)
