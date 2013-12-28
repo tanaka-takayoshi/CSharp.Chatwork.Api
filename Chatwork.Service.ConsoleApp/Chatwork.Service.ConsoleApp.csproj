@@ -82,7 +82,7 @@
   <ItemGroup>
     <Reference Include="Chatwork.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Chatwork.Api.0.0.2\lib\portable-net45+sl5+wp8+win8\Chatwork.Service.dll</HintPath>
+      <HintPath>..\packages\Chatwork.Api.0.0.3\lib\portable-net45+sl5+wp8+win8\Chatwork.Service.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
