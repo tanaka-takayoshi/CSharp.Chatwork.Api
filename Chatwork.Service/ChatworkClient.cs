@@ -74,7 +74,7 @@ namespace Chatwork.Service
             httpClient = new HttpClient(new ChatWorkAuthenticationHandler(apiToken, innerHandler));
         }
 
-        private async Task<TResult> GetAsync<TResult>(string path, params KeyValuePair<string, object>[] parameters)
+        private Task<TResult> GetAsync<TResult>(string path, params KeyValuePair<string, object>[] parameters)
         {
             //TODO エスケープ処理
             var requestUri = new Uri(BaseUri + path + "?" + string.Join("&", parameters.Where(p => p.Value != null).Select(p => p.Key + "=" + ConvertToString(p.Value))));
@@ -83,10 +83,10 @@ namespace Chatwork.Service
                 Method = HttpMethod.Get,
                 RequestUri = requestUri
             };
-            return await SendAsync<TResult>(request);
+            return SendAsync<TResult>(request);
         }
 
-        private async Task<TResult> SendAsync<TResult>(HttpMethod method, string path, params KeyValuePair<string, object>[] parameters)
+        private Task<TResult> SendAsync<TResult>(HttpMethod method, string path, params KeyValuePair<string, object>[] parameters)
         {
             var request = new HttpRequestMessage()
             {
@@ -94,7 +94,7 @@ namespace Chatwork.Service
                 Content = new FormUrlEncodedContent(parameters.Where(p => p.Value != null).Select(p => new KeyValuePair<string, string>(p.Key, ConvertToString(p.Value)))),
                 RequestUri = new Uri(BaseUri + path)
             };
-            return await SendAsync<TResult>(request);
+            return SendAsync<TResult>(request);
         }
 
         private async Task<TResult> SendAsync<TResult>(HttpRequestMessage request)
