@@ -175,7 +175,7 @@ namespace Chatwork.Service
             return GetAsync<MyStatusModel>("/my/status");
         }
 
-        Task<IList<MyTaskModel>> IMy.GetTasksAsync(int? assigned_by_account_id = null, string status = null)
+        Task<IList<MyTaskModel>> IMy.GetTasksAsync(int? assigned_by_account_id, string status)
         {
             return GetAsync<IList<MyTaskModel>>("/my/tasks"
                 , new KeyValuePair<string, object>("assigned_by_account_id", assigned_by_account_id)
@@ -239,10 +239,10 @@ namespace Chatwork.Service
 
         Task<CreatedRoomModel> IRoom.CreateAsync(IEnumerable<int> members_admin_ids,
             string name,
-            string description = null,
-            string icon_preset = null,
-            IEnumerable<int> members_member_ids = null,
-            IEnumerable<int> members_readonly_ids = null)
+            string description,
+            string icon_preset,
+            IEnumerable<int> members_member_ids,
+            IEnumerable<int> members_readonly_ids)
         {
             return SendAsync<CreatedRoomModel>(
                 HttpMethod.Post,
@@ -261,8 +261,8 @@ namespace Chatwork.Service
 
         Task<CreatedRoomModel> IRoom.UpdateRoomAsync(int room_id,
             string name,
-            string description = null,
-            string icon_preset = null)
+            string description,
+            string icon_preset)
         {
             return SendAsync<CreatedRoomModel>(
                 HttpMethod.Put,
@@ -288,8 +288,8 @@ namespace Chatwork.Service
 
         Task<RoomMembersModel> IRoom.UpdateRoomMembersAsync(int room_id,
             IEnumerable<int> members_admin_ids,
-            IEnumerable<int> members_member_ids = null,
-            IEnumerable<int> members_readonly_ids = null)
+            IEnumerable<int> members_member_ids,
+            IEnumerable<int> members_readonly_ids)
         {
             return SendAsync<RoomMembersModel>(HttpMethod.Put,
                 "/rooms/" + room_id + "/members",
@@ -316,7 +316,7 @@ namespace Chatwork.Service
             return GetAsync<MessageModel>("/rooms/" + room_id + "/messages/" + message_id);
         }
 
-        Task<IList<TaskModel>> IRoom.GetTasksAsync(int room_id, int? account_id = null, int? assigned_by_account_id = null, string status = null)
+        Task<IList<TaskModel>> IRoom.GetTasksAsync(int room_id, int? account_id, int? assigned_by_account_id, string status)
         {
             return GetAsync<IList<TaskModel>>("/rooms/" + room_id + "/tasks"
                 , new KeyValuePair<string, object>("account_id", account_id)
@@ -327,7 +327,7 @@ namespace Chatwork.Service
         Task<CreatedTasksModel> IRoom.CreateTasksAsync(int room_id,
             string body,
             IEnumerable<int> to_ids,
-            DateTime? limit = null)
+            DateTime? limit)
         {
             return SendAsync<CreatedTasksModel>(HttpMethod.Post
                 , "/rooms/" + room_id + "/tasks"
@@ -346,7 +346,7 @@ namespace Chatwork.Service
             return GetAsync<IList<FileModel>>("/rooms/" + room_id + "/files");
         }
 
-        Task<FileModel> IRoom.GetFilAsync(int room_id, int file_id, bool create_download_url = false)
+        Task<FileModel> IRoom.GetFilAsync(int room_id, int file_id, bool create_download_url)
         {
             return GetAsync<FileModel>("/rooms/" + room_id + "/files/" + file_id
                 , new KeyValuePair<string, object>("create_download_url", create_download_url));
