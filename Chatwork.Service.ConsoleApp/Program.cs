@@ -19,6 +19,8 @@ namespace Chatwork.Service.ConsoleApp
             }
             var client = new ChatworkClient(token);
             var me = client.Me.GetAsync().Result;
+            Console.WriteLine("APIの制限回数:{0},残り:{1},リセット:{2}", client.Limit, client.RemainingLimit, client.ResetTime);
+
             Console.WriteLine("あなたの所属:{0},氏名:{1},ID:{2}", me.organization_name, me.name, me.account_id);
 
             var mystatus = client.My.GetStatusAsync().Result;

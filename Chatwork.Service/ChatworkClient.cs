@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,10 @@ namespace Chatwork.Service
             }
         }
 
+        public int Limit { get; set; }
+        public int RemainingLimit { get; set; }
+        public DateTime ResetTime { get; set; }
+
         public IMe Me { get { return this; } }
         public IMy My { get { return this; } }
         public IContact Contract { get { return this; } }
@@ -100,6 +105,7 @@ namespace Chatwork.Service
         private async Task<TResult> SendAsync<TResult>(HttpRequestMessage request)
         {
             var res = await httpClient.SendAsync(request).ConfigureAwait(false);
+            UpdateCallLimit(res);
             if (res.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<TResult>(await res.Content.ReadAsStringAsync().ConfigureAwait(false));
@@ -116,6 +122,7 @@ namespace Chatwork.Service
                 RequestUri = new Uri(BaseUri + path)
             };
             var res = await httpClient.SendAsync(request).ConfigureAwait(false);
+            UpdateCallLimit(res);
             if (res.IsSuccessStatusCode)
             {
                 return;
@@ -145,6 +152,13 @@ namespace Chatwork.Service
                 text = value.ToString();
             }
             return text;
+        }
+
+        private void UpdateCallLimit(HttpResponseMessage res)
+        {
+            Limit = int.Parse(res.Headers.GetValues("X-RateLimit-Limit").Single());
+            RemainingLimit = int.Parse(res.Headers.GetValues("X-RateLimit-Remaining").Single());
+            ResetTime = DateTimeExtensions.FromUnixTime(long.Parse(res.Headers.GetValues("X-RateLimit-Reset").Single()));
         }
     }
 

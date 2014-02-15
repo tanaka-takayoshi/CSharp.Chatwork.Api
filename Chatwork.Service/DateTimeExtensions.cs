@@ -20,6 +20,11 @@ namespace Chatwork.Service
             }
             return (long)delta.TotalSeconds;
         }
+
+        public static DateTime FromUnixTime(long unixTime)
+        {
+            return BaseDate.AddSeconds(unixTime).ToLocalTime();
+        }
     }
 
     public class UnixDateTimeConverter : DateTimeConverterBase
