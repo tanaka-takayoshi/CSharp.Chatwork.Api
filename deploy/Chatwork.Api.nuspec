@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Chatwork.Api</id>
+        <version>0.0.4</version>
+        <authors>tanaka_733</authors>
+        <licenseUrl>https://github.com/tanaka-takayoshi/CSharp.Chatwork.Api/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/tanaka-takayoshi/CSharp.Chatwork.Api/</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Chatwork API Client</description>
+        <language>ja-JP</language>
+        <tags>chatwork</tags>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+            <dependency id="Microsoft.Net.Http" version="2.2.18" />
+            <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\..\temp\Chatwork.Service\Chatwork.Service.dll" target="lib\portable-net45+sl5+wp8+win8\Chatwork.Service.dll" />
+    </files>
+</package>
