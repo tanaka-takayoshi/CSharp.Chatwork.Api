@@ -45,7 +45,8 @@ namespace Chatwork.Service
     public class MyTaskModel
     {
         public int task_id { get; set; }
-        public AssignedByAccountModel assigned_by_account { get; set; }
+        public RoomSummaryModel room { get; set; }
+        public AccountModel assigned_by_account { get; set; }
         public int message_id { get; set; }
         public string body { get; set; }
         [JsonProperty]
@@ -54,11 +55,11 @@ namespace Chatwork.Service
         public string status { get; set; }
     }
 
-    public class AssignedByAccountModel
+    public class RoomSummaryModel
     {
-        public int account_id { get; set; }
+        public int room_id { get; set; }
         public string name { get; set; }
-        public string avatar_image_url { get; set; }
+        public string icon_path { get; set; }
     }
 
     public class ContactModel
@@ -98,8 +99,7 @@ namespace Chatwork.Service
         public DateTime last_update_time { get; set; }
     }
 
-
-    public class RoomMembersModel
+    public class UpdatedRoomMembersModel
     {
         public int[] admin { get; set; }
         public int[] member { get; set; }
@@ -127,8 +127,9 @@ namespace Chatwork.Service
     public class TaskModel
     {
         public int task_id { get; set; }
+        public RoomModel room { get; set; }
         public AccountModel account { get; set; }
-        public AssignedByAccountModel assigned_by_account { get; set; }
+        public AccountModel assigned_by_account { get; set; }
         public int message_id { get; set; }
         public string body { get; set; }
         [JsonProperty]
@@ -143,7 +144,6 @@ namespace Chatwork.Service
         public string name { get; set; }
         public string avatar_image_url { get; set; }
     }
-
     
     public class CreatedTasksModel
     {
