@@ -226,8 +226,8 @@ namespace Chatwork.Service
             string icon_preset = null);
         Task LeaveRoomAsync(int room_id,
             string action_type);
-        Task<RoomMembersModel> GetRoomMembersAsync(int room_id);
-        Task<RoomMembersModel> UpdateRoomMembersAsync(int room_id,
+        Task<IList<ContactModel>> GetRoomMembersAsync(int room_id);
+        Task<UpdatedRoomMembersModel> UpdateRoomMembersAsync(int room_id,
             IEnumerable<int> members_admin_ids,
             IEnumerable<int> members_member_ids = null,
             IEnumerable<int> members_readonly_ids = null);
@@ -295,17 +295,17 @@ namespace Chatwork.Service
                 new KeyValuePair<string, object>("action_type", action_type));
         }
 
-        Task<RoomMembersModel> IRoom.GetRoomMembersAsync(int room_id)
+        Task<IList<ContactModel>> IRoom.GetRoomMembersAsync(int room_id)
         {
-            return GetAsync<RoomMembersModel>("/rooms/" + room_id + "/members");
+            return GetAsync<IList<ContactModel>>("/rooms/" + room_id + "/members");
         }
 
-        Task<RoomMembersModel> IRoom.UpdateRoomMembersAsync(int room_id,
+        Task<UpdatedRoomMembersModel> IRoom.UpdateRoomMembersAsync(int room_id,
             IEnumerable<int> members_admin_ids,
             IEnumerable<int> members_member_ids,
             IEnumerable<int> members_readonly_ids)
         {
-            return SendAsync<RoomMembersModel>(HttpMethod.Put,
+            return SendAsync<UpdatedRoomMembersModel>(HttpMethod.Put,
                 "/rooms/" + room_id + "/members",
                 new KeyValuePair<string, object>("members_admin_ids", members_admin_ids),
                 new KeyValuePair<string, object>("members_member_ids", members_member_ids),
