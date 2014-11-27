@@ -231,7 +231,7 @@ namespace Chatwork.Service
             IEnumerable<int> members_admin_ids,
             IEnumerable<int> members_member_ids = null,
             IEnumerable<int> members_readonly_ids = null);
-        Task<IList<MessageModel>> GetMessagesAsync(int room_id);
+        Task<IList<MessageModel>> GetMessagesAsync(int room_id, bool force = false);
         Task<CreatedMessageModel> SendMessgesAsync(int room_id, string body);
         Task<MessageModel> GetMessageAsync(int room_id, int message_id);
         Task<IList<TaskModel>> GetTasksAsync(int room_id, int? account_id = null, int? assigned_by_account_id = null, string status = null);
@@ -312,10 +312,10 @@ namespace Chatwork.Service
                 new KeyValuePair<string, object>("members_readonly_ids", members_readonly_ids));
         }
 
-        Task<IList<MessageModel>> IRoom.GetMessagesAsync(int room_id)
+        Task<IList<MessageModel>> IRoom.GetMessagesAsync(int room_id, bool force)
         {
-            throw new NotImplementedException("APIが実装されていません");
-            //return GetAsync<IEnumerable<MessageModel>>("/rooms/" + room_id + "/messages");
+            return GetAsync<IList<MessageModel>>("/rooms/" + room_id + "/messages",
+                new KeyValuePair<string, object>("force", force));
         }
 
         Task<CreatedMessageModel> IRoom.SendMessgesAsync(int room_id, string body)
