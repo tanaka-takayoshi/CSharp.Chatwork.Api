@@ -11,9 +11,37 @@
         <language>ja-JP</language>
         <tags>chatwork</tags>
         <dependencies>
+          <group targetFramework="net4">
             <dependency id="Newtonsoft.Json" version="5.0.8" />
             <dependency id="Microsoft.Net.Http" version="2.2.18" />
             <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
+          </group>
+          <group targetFramework="net45">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
+          <group targetFramework="wp80">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+            <dependency id="Microsoft.Net.Http" version="2.2.18" />
+            <dependency id="Microsoft.Bcl.Async" version="1.0.165" />
+          </group>
+          <group targetFramework="wpa81">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
+          <group targetFramework="win8">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
+          <group targetFramework="MonoAndroid">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
+          <group targetFramework="MonoTouch">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
+          <group targetFramework="portable-net45+win81+wpa81+MonoTouch+MonoAndroid">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
+          <group targetFramework="portable-net45+WP8+win8+wpa81+MonoTouch+MonoAndroid">
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+          </group>
         </dependencies>
     </metadata>
     <files>

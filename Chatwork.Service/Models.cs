@@ -51,7 +51,7 @@ namespace Chatwork.Service
         public string body { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime limit_time { get; set; }
+        public DateTime? limit_time { get; set; }
         public string status { get; set; }
     }
 
@@ -121,7 +121,7 @@ namespace Chatwork.Service
         public DateTime send_time { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime update_time { get; set; }
+        public DateTime? update_time { get; set; }
     }
 
     public class TaskModel
@@ -134,7 +134,7 @@ namespace Chatwork.Service
         public string body { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime limit_time { get; set; }
+        public DateTime? limit_time { get; set; }
         public string status { get; set; }
     }
 
