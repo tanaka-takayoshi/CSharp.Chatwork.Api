@@ -11,7 +11,7 @@ $nugetApiKey = $parameters["NuGetApiKey-secure"]
 
 # update package version in nuspec file
 Write-Output "Updating version in nuspec file"
-$nuspecPath = "$scriptFolder\Chatwork.Api.nuspec"
+$nuspecPath = "$scriptFolder\deploy\Chatwork.Api.nuspec"
 [xml]$xml = Get-Content $nuspecPath
 $xml.package.metadata.version = $projectVersion
 $xml.Save($nuspecPath)
