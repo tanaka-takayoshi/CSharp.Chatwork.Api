@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chatwork.Service.Cmdlets
@@ -14,30 +15,28 @@ namespace Chatwork.Service.Cmdlets
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
+        [Parameter(Position = 1)]
+        [ValidateSet("さん", "様", "殿")]
+        public string Title { get; set; }
+
         protected override void BeginProcessing()
         {
-            WriteObject("Begin Hello!");
+            WriteObject("Begin Hello World!");
         }
 
         protected override void ProcessRecord()
         {
-            WriteObject("World " + Name);
+            WriteObject(Name + " " + Title);
         }
 
         protected override void EndProcessing()
         {
-            if (Stopping)
-            {
-                WriteObject("Stopped Hello.");
-            }
-            else
-            {
-                WriteObject("End Hello!");
-            }
+            WriteObject("End Hello World!");
         }
 
         protected override void StopProcessing()
         {
+            //これは出力されない
             WriteObject("Now stopping...");
         }
     }

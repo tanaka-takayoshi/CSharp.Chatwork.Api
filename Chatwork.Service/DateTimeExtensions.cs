@@ -16,7 +16,7 @@ namespace Chatwork.Service
             var delta = date - BaseDate;
             if (delta.TotalSeconds < 0)
             {
-                throw new ArgumentOutOfRangeException("date", "Unix epoc starts January 1st, 1970");
+                throw new ArgumentOutOfRangeException(nameof(date), "Unix epoc starts January 1st, 1970");
             }
             return (long)delta.TotalSeconds;
         }
@@ -35,26 +35,18 @@ namespace Chatwork.Service
             if (reader.TokenType != JsonToken.Integer)
             {
                 throw new Exception(
-                    String.Format("Unexpected token parsing date. Expected Integer, got {0}.",
-                    reader.TokenType));
+                    $"Unexpected token parsing date. Expected Integer, got {reader.TokenType}.");
             }
 
             var ticks = (long)reader.Value;
-            return DateTimeExtensions.BaseDate.AddSeconds(ticks);
+            return ticks == 0 ? default(DateTime?) : DateTimeExtensions.FromUnixTime(ticks);
         }
 
         public override void WriteJson(JsonWriter writer, object value,
             JsonSerializer serializer)
         {
-            long ticks;
-            if (value is DateTime)
-            {
-                ticks = ((DateTime) value).ToUnixTime();
-            }
-            else
-            {
-                throw new Exception("Expected date object value.");
-            }
+            var dt = value as DateTime?;
+            var ticks = dt?.ToUnixTime() ?? 0;
             writer.WriteValue(ticks);
         }
     }   

@@ -10,157 +10,235 @@ namespace Chatwork.Service
 
     public class MeModel
     {
-        public int account_id { get; set; }
-        public int room_id { get; set; }
-        public string name { get; set; }
-        public string chatwork_id { get; set; }
-        public int organization_id { get; set; }
-        public string organization_name { get; set; }
-        public string department { get; set; }
-        public string title { get; set; }
-        public string url { get; set; }
-        public string introduction { get; set; }
-        public string mail { get; set; }
-        public string tel_organization { get; set; }
-        public string tel_extension { get; set; }
-        public string tel_mobile { get; set; }
-        public string skype { get; set; }
-        public string facebook { get; set; }
-        public string twitter { get; set; }
-        public string avatar_image_url { get; set; }
+        [JsonProperty("account_id")]
+        public int AccountId { get; set; }
+        [JsonProperty("room_id")]
+        public int RoomId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("chatwork_id")]
+        public string ChatworkId { get; set; }
+        [JsonProperty("organization_id")]
+        public int OrganizationId { get; set; }
+        [JsonProperty("organization_name")]
+        public string OrganizationName { get; set; }
+        [JsonProperty("department")]
+        public string Department { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("url")]
+        public string Url { get; set; }
+        [JsonProperty("introduction")]
+        public string Introduction { get; set; }
+        [JsonProperty("mail")]
+        public string Mail { get; set; }
+        [JsonProperty("tel_organization")]
+        public string TelOrganization { get; set; }
+        [JsonProperty("tel_extension")]
+        public string TelExtension { get; set; }
+        [JsonProperty("tel_mobile")]
+        public string TelMobile { get; set; }
+        [JsonProperty("skype")]
+        public string Skype { get; set; }
+        [JsonProperty("facebook")]
+        public string Facebook { get; set; }
+        [JsonProperty("twitter")]
+        public string Twitter { get; set; }
+        [JsonProperty("avatar_image_url")]
+        public string AvatarImageUrl { get; set; }
     }
 
 
     public class MyStatusModel
     {
-        public int unread_room_num { get; set; }
-        public int mention_room_num { get; set; }
-        public int mytask_room_num { get; set; }
-        public int unread_num { get; set; }
-        public int mention_num { get; set; }
-        public int mytask_num { get; set; }
+        [JsonProperty("unread_room_num")]
+        public int UnreadRoomNum { get; set; }
+        [JsonProperty("mention_room_num")]
+        public int MentionRoomNum { get; set; }
+        [JsonProperty("mytask_room_num")]
+        public int MytaskRoomNum { get; set; }
+        [JsonProperty("unread_num")]
+        public int UnreadNum { get; set; }
+        [JsonProperty("mention_num")]
+        public int MentionNum { get; set; }
+        [JsonProperty("mytask_num")]
+        public int MytaskNum { get; set; }
     }
 
 
     public class MyTaskModel
     {
-        public int task_id { get; set; }
-        public RoomSummaryModel room { get; set; }
-        public AccountModel assigned_by_account { get; set; }
-        public int message_id { get; set; }
-        public string body { get; set; }
-        [JsonProperty]
+        [JsonProperty("task_id")]
+        public int TaskId { get; set; }
+        [JsonProperty("room")]
+        public RoomSummaryModel Room { get; set; }
+        [JsonProperty("assigned_by_account")]
+        public AccountModel AssignedByAccount { get; set; }
+        [JsonProperty("message_id")]
+        public int MessageId { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime limit_time { get; set; }
-        public string status { get; set; }
+        [JsonProperty("limit_time")]
+        public DateTime? LimitTime { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 
     public class RoomSummaryModel
     {
-        public int room_id { get; set; }
-        public string name { get; set; }
-        public string icon_path { get; set; }
+        [JsonProperty("room_id")]
+        public int RoomId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("icon_path")]
+        public string IconPath { get; set; }
     }
 
     public class ContactModel
     {
-        public int account_id { get; set; }
-        public int room_id { get; set; }
-        public string name { get; set; }
-        public string chatwork_id { get; set; }
-        public int organization_id { get; set; }
-        public string organization_name { get; set; }
-        public string department { get; set; }
-        public string avatar_image_url { get; set; }
+        [JsonProperty("account_id")]
+        public int AccountId { get; set; }
+        [JsonProperty("room_id")]
+        public int RoomId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("chatwork_id")]
+        public string ChatworkId { get; set; }
+        [JsonProperty("organization_id")]
+        public int OrganizationId { get; set; }
+        [JsonProperty("organization_name")]
+        public string OrganizationName { get; set; }
+        [JsonProperty("department")]
+        public string Department { get; set; }
+        [JsonProperty("avatar_image_url")]
+        public string AvatarImageUrl { get; set; }
     }
 
     public class CreatedRoomModel
     {
-        public int room_id { get; set; }
+        [JsonProperty("room_id")]
+        public int RoomId { get; set; }
     }
 
 
     public class RoomModel
     {
-        public int room_id { get; set; }
-        public string name { get; set; }
-        public string type { get; set; }
-        public string role { get; set; }
-        public bool sticky { get; set; }
-        public int unread_num { get; set; }
-        public int mention_num { get; set; }
-        public int mytask_num { get; set; }
-        public int message_num { get; set; }
-        public int file_num { get; set; }
-        public int task_num { get; set; }
-        public string icon_path { get; set; }
-        [JsonProperty]
+        [JsonProperty("room_id")]
+        public int RoomId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
+        [JsonProperty("role")]
+        public string Role { get; set; }
+        [JsonProperty("sticky")]
+        public bool Sticky { get; set; }
+        [JsonProperty("unread_num")]
+        public int UnreadNum { get; set; }
+        [JsonProperty("mention_num")]
+        public int MentionNum { get; set; }
+        [JsonProperty("mytask_num")]
+        public int MytaskNum { get; set; }
+        [JsonProperty("message_num")]
+        public int MessageNum { get; set; }
+        [JsonProperty("file_num")]
+        public int FileNum { get; set; }
+        [JsonProperty("task_num")]
+        public int TaskNum { get; set; }
+        [JsonProperty("icon_path")]
+        public string IconPath { get; set; }
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime last_update_time { get; set; }
+        [JsonProperty("last_update_time")]
+        public DateTime? LastUpdateTime { get; set; }
     }
 
     public class UpdatedRoomMembersModel
     {
-        public int[] admin { get; set; }
-        public int[] member { get; set; }
-        public int[] _readonly { get; set; }
+        [JsonProperty("admin")]
+        public int[] Admin { get; set; }
+        [JsonProperty("member")]
+        public int[] Member { get; set; }
+        [JsonProperty("_readonly")]
+        public int[] Readonly { get; set; }
     }
 
     public class CreatedMessageModel
     {
-        public int message_id { get; set; }
+        [JsonProperty("message_id")]
+        public int MessageId { get; set; }
     }
 
     public class MessageModel
     {
-        public int message_id { get; set; }
-        public AccountModel account { get; set; }
-        public string body { get; set; }
-        [JsonProperty]
+        [JsonProperty("message_id")]
+        public int MessageId { get; set; }
+        [JsonProperty("account")]
+        public AccountModel Account { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime send_time { get; set; }
-        [JsonProperty]
+        [JsonProperty("send_time")]
+        public DateTime SendTime { get; set; }
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime update_time { get; set; }
+        [JsonProperty("update_time")]
+        public DateTime? UpdateTime { get; set; }
     }
 
     public class TaskModel
     {
-        public int task_id { get; set; }
-        public RoomModel room { get; set; }
-        public AccountModel account { get; set; }
-        public AccountModel assigned_by_account { get; set; }
-        public int message_id { get; set; }
-        public string body { get; set; }
-        [JsonProperty]
+        [JsonProperty("task_id")]
+        public int TaskId { get; set; }
+        [JsonProperty("room")]
+        public RoomModel Room { get; set; }
+        [JsonProperty("account")]
+        public AccountModel Account { get; set; }
+        [JsonProperty("assigned_by_account")]
+        public AccountModel AssignedByAccount { get; set; }
+        [JsonProperty("message_id")]
+        public int MessageId { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime limit_time { get; set; }
-        public string status { get; set; }
+        [JsonProperty("limit_time")]
+        public DateTime? LimitTime { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 
     public class AccountModel
     {
-        public int account_id { get; set; }
-        public string name { get; set; }
-        public string avatar_image_url { get; set; }
+        [JsonProperty("account_id")]
+        public int AccountId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("avatar_image_url")]
+        public string AvatarImageUrl { get; set; }
     }
     
     public class CreatedTasksModel
     {
-        public int[] task_ids { get; set; }
+        [JsonProperty("task_ids")]
+        public int[] TaskIds { get; set; }
     }
 
     public class FileModel
     {
-        public int file_id { get; set; }
-        public AccountModel account { get; set; }
-        public int message_id { get; set; }
-        public string filename { get; set; }
-        public int filesize { get; set; }
-        [JsonProperty]
+        [JsonProperty("file_id")]
+        public int FileId { get; set; }
+        [JsonProperty("account")]
+        public AccountModel Account { get; set; }
+        [JsonProperty("message_id")]
+        public int MessageId { get; set; }
+        [JsonProperty("filename")]
+        public string Filename { get; set; }
+        [JsonProperty("filesize")]
+        public int Filesize { get; set; }
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime upload_time { get; set; }
-        public string download_url { get; set; }
+        [JsonProperty("upload_time")]
+        public DateTime UploadTime { get; set; }
+        [JsonProperty("download_url")]
+        public string DownloadUrl { get; set; }
     }
 
 }

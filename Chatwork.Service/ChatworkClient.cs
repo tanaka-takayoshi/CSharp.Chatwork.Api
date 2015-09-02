@@ -14,7 +14,7 @@ namespace Chatwork.Service
         readonly string apiToken;
 
         public ChatWorkAuthenticationHandler(string apiToken)
-            : this(apiToken, new System.Net.Http.HttpClientHandler())
+            : this(apiToken, new HttpClientHandler())
         { }
 
         public ChatWorkAuthenticationHandler(string apiToken, HttpMessageHandler innerHandler)
@@ -64,11 +64,11 @@ namespace Chatwork.Service
         public int RemainingLimit { get; set; }
         public DateTime ResetTime { get; set; }
 
-        public IMe Me { get { return this; } }
-        public IMy My { get { return this; } }
-        public IContact Contract { get { return this; } }
-        public IRoom Room { get { return this; } }
-        
+        public IMe Me => this;
+        public IMy My => this;
+        public IContact Contract => this;
+        public IRoom Room => this;
+
         public ChatworkClient(string apiToken)
         {
             httpClient = new HttpClient(new ChatWorkAuthenticationHandler(apiToken));
@@ -110,7 +110,7 @@ namespace Chatwork.Service
             {
                 return JsonConvert.DeserializeObject<TResult>(await res.Content.ReadAsStringAsync().ConfigureAwait(false));
             }
-            throw new Exception(string.Format("Failed with code {0}. Message: {1}", res.StatusCode, await res.Content.ReadAsStringAsync()));
+            throw new Exception($"Failed with code {res.StatusCode}. Message: {await res.Content.ReadAsStringAsync()}");
         }
 
         private async Task SendAsync(HttpMethod httpMethod, string path, params KeyValuePair<string, object>[] parameters)
@@ -127,31 +127,29 @@ namespace Chatwork.Service
             {
                 return;
             }
-            throw new Exception(string.Format("Failed with code {0}. Message: {1}", res.StatusCode, await res.Content.ReadAsStringAsync()));
+            throw new Exception($"Failed with code {res.StatusCode}. Message: {await res.Content.ReadAsStringAsync()}");
         }
 
         private string ConvertToString(object value)
         {
             if (value == null)
-                throw new ArgumentNullException("value");
-            string text;
-            if (value is IEnumerable<int>)
+                throw new ArgumentNullException(nameof(value));
+            var ints = value as IEnumerable<int>;
+            if (ints != null)
             {
-                text = string.Join(",", (IEnumerable<int>)value);
+                return string.Join(",", ints);
             }
-            else if (value is DateTime)
+            var dt = value as DateTime?;
+            if (dt.HasValue)
             {
-                text = ((DateTime) value).ToUnixTime().ToString();
+                return dt.Value.ToUnixTime().ToString();
             }
-            else if (value is bool)
+            var flg = value as bool?;
+            if (flg.HasValue)
             {
-                text = (bool)value ? "1" : "0";
+                return flg.Value ? "1" : "0";
             }
-            else
-            {
-                text = value.ToString();
-            }
-            return text;
+            return value.ToString();
         }
 
         private void UpdateCallLimit(HttpResponseMessage res)
@@ -189,11 +187,12 @@ namespace Chatwork.Service
             return GetAsync<MyStatusModel>("/my/status");
         }
 
-        Task<IList<MyTaskModel>> IMy.GetTasksAsync(int? assigned_by_account_id, string status)
+        async Task<IList<MyTaskModel>> IMy.GetTasksAsync(int? assigned_by_account_id, string status)
         {
-            return GetAsync<IList<MyTaskModel>>("/my/tasks"
+            var res = await GetAsync<IList<MyTaskModel>>("/my/tasks"
                 , new KeyValuePair<string, object>("assigned_by_account_id", assigned_by_account_id)
                 , new KeyValuePair<string, object>("status", status));
+            return res ?? Enumerable.Empty<MyTaskModel>().ToList();
         }
     }
 
@@ -204,9 +203,10 @@ namespace Chatwork.Service
 
     public partial class ChatworkClient // IContact
     {
-        Task<IList<ContactModel>> IContact.GetAsync()
+        async Task<IList<ContactModel>> IContact.GetAsync()
         {
-            return GetAsync<IList<ContactModel>>("/contacts");
+            var res = await GetAsync<IList<ContactModel>>("/contacts");
+            return res ?? Enumerable.Empty<ContactModel>().ToList();
         }
     }
 
@@ -246,9 +246,10 @@ namespace Chatwork.Service
 
     public partial class ChatworkClient // IRoom
     {
-        Task<IList<RoomModel>> IRoom.GetAsync()
+        async Task<IList<RoomModel>> IRoom.GetAsync()
         {
-            return GetAsync<IList<RoomModel>>("/rooms");
+            var res = await GetAsync<IList<RoomModel>>("/rooms");
+            return res ?? Enumerable.Empty<RoomModel>().ToList();
         }
 
         Task<CreatedRoomModel> IRoom.CreateAsync(IEnumerable<int> members_admin_ids,
@@ -295,9 +296,10 @@ namespace Chatwork.Service
                 new KeyValuePair<string, object>("action_type", action_type));
         }
 
-        Task<IList<ContactModel>> IRoom.GetRoomMembersAsync(int room_id)
+        async Task<IList<ContactModel>> IRoom.GetRoomMembersAsync(int room_id)
         {
-            return GetAsync<IList<ContactModel>>("/rooms/" + room_id + "/members");
+            var res = await GetAsync<IList<ContactModel>>("/rooms/" + room_id + "/members");
+            return res ?? Enumerable.Empty<ContactModel>().ToList();
         }
 
         Task<UpdatedRoomMembersModel> IRoom.UpdateRoomMembersAsync(int room_id,
@@ -312,10 +314,11 @@ namespace Chatwork.Service
                 new KeyValuePair<string, object>("members_readonly_ids", members_readonly_ids));
         }
 
-        Task<IList<MessageModel>> IRoom.GetMessagesAsync(int room_id, bool force)
+        async Task<IList<MessageModel>> IRoom.GetMessagesAsync(int room_id, bool force)
         {
-            return GetAsync<IList<MessageModel>>("/rooms/" + room_id + "/messages",
+            var res = await GetAsync<IList<MessageModel>>("/rooms/" + room_id + "/messages",
                 new KeyValuePair<string, object>("force", force));
+            return res ?? Enumerable.Empty<MessageModel>().ToList();
         }
 
         Task<CreatedMessageModel> IRoom.SendMessgesAsync(int room_id, string body)
@@ -330,12 +333,13 @@ namespace Chatwork.Service
             return GetAsync<MessageModel>("/rooms/" + room_id + "/messages/" + message_id);
         }
 
-        Task<IList<TaskModel>> IRoom.GetTasksAsync(int room_id, int? account_id, int? assigned_by_account_id, string status)
+        async Task<IList<TaskModel>> IRoom.GetTasksAsync(int room_id, int? account_id, int? assigned_by_account_id, string status)
         {
-            return GetAsync<IList<TaskModel>>("/rooms/" + room_id + "/tasks"
+            var res = await GetAsync<IList<TaskModel>>("/rooms/" + room_id + "/tasks"
                 , new KeyValuePair<string, object>("account_id", account_id)
                 , new KeyValuePair<string, object>("assigned_by_account_id", assigned_by_account_id)
                 , new KeyValuePair<string, object>("status", status));
+            return res ?? Enumerable.Empty<TaskModel>().ToList();
         }
 
         Task<CreatedTasksModel> IRoom.CreateTasksAsync(int room_id,
@@ -355,9 +359,10 @@ namespace Chatwork.Service
             return GetAsync<TaskModel>("/rooms/" + room_id + "/tasks/" + task_id);
         }
 
-        Task<IList<FileModel>> IRoom.GetFilesAsync(int room_id)
+        async Task<IList<FileModel>> IRoom.GetFilesAsync(int room_id)
         {
-            return GetAsync<IList<FileModel>>("/rooms/" + room_id + "/files");
+            var res = await GetAsync<IList<FileModel>>("/rooms/" + room_id + "/files");
+            return res ?? Enumerable.Empty<FileModel>().ToList();
         }
 
         Task<FileModel> IRoom.GetFilAsync(int room_id, int file_id, bool create_download_url)
