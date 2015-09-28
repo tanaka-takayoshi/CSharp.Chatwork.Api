@@ -33,6 +33,7 @@ namespace Chatwork.Service
     public partial class ChatworkClient : IMe, IMy, IContact, IRoom
     {
         private static readonly string BaseUri = "https://api.chatwork.com/v1/";
+        private static readonly int ContentBodyKeyValueLimit = 30000;
         
         readonly HttpClient httpClient;
 
@@ -323,6 +324,10 @@ namespace Chatwork.Service
 
         Task<CreatedMessageModel> IRoom.SendMessgesAsync(int room_id, string body)
         {
+            if (body.Length > ContentBodyKeyValueLimit)
+            {
+                body = body.Substring(0, ContentBodyKeyValueLimit) + "\r\n [メッセージが長すぎるため省略されました]";
+            }
             return SendAsync<CreatedMessageModel>(HttpMethod.Post,
                 "/rooms/" + room_id + "/messages",
                 new KeyValuePair<string, object>("body", body));
