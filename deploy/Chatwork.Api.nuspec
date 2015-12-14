@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Chatwork.Api</id>
-        <version>0.4.0-pre1</version>
+        <version>0.4.0</version>
         <authors>tanaka_733</authors>
         <licenseUrl>https://github.com/tanaka-takayoshi/CSharp.Chatwork.Api/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/tanaka-takayoshi/CSharp.Chatwork.Api/</projectUrl>
