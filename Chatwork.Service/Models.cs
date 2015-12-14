@@ -96,7 +96,7 @@ namespace Chatwork.Service
         public string icon_path { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime last_update_time { get; set; }
+        public DateTime? last_update_time { get; set; }
     }
 
     public class UpdatedRoomMembersModel
@@ -118,7 +118,7 @@ namespace Chatwork.Service
         public string body { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime send_time { get; set; }
+        public DateTime? send_time { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? update_time { get; set; }
@@ -159,7 +159,7 @@ namespace Chatwork.Service
         public int filesize { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime upload_time { get; set; }
+        public DateTime? upload_time { get; set; }
         public string download_url { get; set; }
     }
 
