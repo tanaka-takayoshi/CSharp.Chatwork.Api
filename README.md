@@ -1,7 +1,7 @@
 CSharp.Chatwork.Api
 ===================
 
-[![Build status](https://ci.appveyor.com/api/projects/status?id=ubcx0i351c34342a)](https://ci.appveyor.com/project/csharp-chatwork-api)
+![Build Status](https://tanaka733.visualstudio.com/DefaultCollection/_apis/public/build/definitions/8ee4bdd6-2ff2-4f5b-aaaf-ec302160ce7b/1/badge)
 
 Chatwork API for C#
 
