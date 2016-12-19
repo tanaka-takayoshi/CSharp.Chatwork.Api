@@ -6,7 +6,7 @@
   "authors": [ "Takayoshi Taknaka" ],
   "packOptions": {
     "projectUrl": "https://github.com/tanaka-takayoshi/CSharp.Chatwork.Api",
-    "tags": [ "json" ],
+    "tags": [ "chatwork" ],
     "licenseUrl": "https://raw.githubusercontent.com/tanaka-takayoshi/CSharp.Chatwork.Api/master/LICENSE",
     "iconUrl": "http://www.newtonsoft.com/content/images/nugeticon.png",
     "repository": {
