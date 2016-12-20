@@ -1,0 +1,36 @@
+﻿{
+  "version": "1.0.0-*",
+  "title": "Chatwork.Api",
+  "description": "Chatwork API Client",
+  "language": "en-US",
+  "authors": [ "Takayoshi Taknaka" ],
+  "packOptions": {
+    "projectUrl": "https://github.com/tanaka-takayoshi/CSharp.Chatwork.Api",
+    "tags": [ "chatwork" ],
+    "licenseUrl": "https://raw.githubusercontent.com/tanaka-takayoshi/CSharp.Chatwork.Api/master/LICENSE",
+    "iconUrl": "http://www.newtonsoft.com/content/images/nugeticon.png",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/tanaka-takayoshi/CSharp.Chatwork.Api"
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": false,
+    "warningsAsErrors": true
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.0"
+    },
+    "Newtonsoft.Json": "9.0.1"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
+    }
+  }
+}
