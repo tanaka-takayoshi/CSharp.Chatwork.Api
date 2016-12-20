@@ -5,14 +5,17 @@ CSharp.Chatwork.Api
 
 Chatwork API for C#
 
+## Release Notes
 
-TODO
+- 0.5.0 Breaking Changes: Now Chatwork.Api only supports .NET Standard 1.6. Could you file an issue if you have any problems?
+
+## TODO
 ===================
-- バリデーション
+- validation
+- Improve allignment for .NET Core 
 
-以下は、API正式版がリリースされた後に対応予定。
-- C# の規約にそった変数名に直す
-- APIの返り値のモデルクラスの整理
-- メソッド実装の最適化
+v1.0 included below features will be realesed after Chatwork API will become GA.
+- Rename property name to Pascal case.
+- Refactor model class.
 
 =======
