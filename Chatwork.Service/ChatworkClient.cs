@@ -234,7 +234,7 @@ namespace Chatwork.Service
             IEnumerable<int> members_readonly_ids = null);
         Task<IList<MessageModel>> GetMessagesAsync(int room_id, bool force = false);
         Task<CreatedMessageModel> SendMessgesAsync(int room_id, string body);
-        Task<MessageModel> GetMessageAsync(int room_id, int message_id);
+        Task<MessageModel> GetMessageAsync(int room_id, long message_id);
         Task<IList<TaskModel>> GetTasksAsync(int room_id, int? account_id = null, int? assigned_by_account_id = null, string status = null);
         Task<CreatedTasksModel> CreateTasksAsync(int room_id,
             string body,
@@ -333,7 +333,7 @@ namespace Chatwork.Service
                 new KeyValuePair<string, object>("body", body));
         }
 
-        Task<MessageModel> IRoom.GetMessageAsync(int room_id, int message_id)
+        Task<MessageModel> IRoom.GetMessageAsync(int room_id, long message_id)
         {
             return GetAsync<MessageModel>("/rooms/" + room_id + "/messages/" + message_id);
         }
