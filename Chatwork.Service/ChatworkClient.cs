@@ -32,7 +32,7 @@ namespace Chatwork.Service
 
     public partial class ChatworkClient : IMe, IMy, IContact, IRoom
     {
-        private static readonly string BaseUri = "https://api.chatwork.com/v1/";
+        private static readonly string BaseUri = "https://api.chatwork.com/v2/";
         private static readonly int ContentBodyKeyValueLimit = 30000;
         
         readonly HttpClient httpClient;
