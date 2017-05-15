@@ -4,9 +4,9 @@
     <Description>Chatwork API Client</Description>
     <AssemblyTitle>Chatwork.Api</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>0.6.0</VersionPrefix>
+    <VersionPrefix>0.6.1</VersionPrefix>
     <Authors>Takayoshi Taknaka</Authors>
-    <TargetFrameworks>netstandard1.6;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugType>portable</DebugType>
     <AssemblyName>Chatwork.Api</AssemblyName>
@@ -33,12 +33,11 @@
     <None Include="App.config" />
   </ItemGroup>
 
+  <!-- see https://github.com/dotnet/cli/issues/6033 -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' " Label=".NET 4.5 Package References">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  </ItemGroup>
-
-  <!-- see https://github.com/dotnet/cli/issues/6033 -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' " Label=".NET 4.6.1 Package References">
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
 </Project>
