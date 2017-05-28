@@ -47,7 +47,7 @@ namespace Chatwork.Service
         public int task_id { get; set; }
         public RoomSummaryModel room { get; set; }
         public AccountModel assigned_by_account { get; set; }
-        public int message_id { get; set; }
+        public long message_id { get; set; }
         public string body { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
@@ -108,12 +108,12 @@ namespace Chatwork.Service
 
     public class CreatedMessageModel
     {
-        public int message_id { get; set; }
+        public long message_id { get; set; }
     }
 
     public class MessageModel
     {
-        public int message_id { get; set; }
+        public long message_id { get; set; }
         public AccountModel account { get; set; }
         public string body { get; set; }
         [JsonProperty]
@@ -130,7 +130,7 @@ namespace Chatwork.Service
         public RoomModel room { get; set; }
         public AccountModel account { get; set; }
         public AccountModel assigned_by_account { get; set; }
-        public int message_id { get; set; }
+        public long message_id { get; set; }
         public string body { get; set; }
         [JsonProperty]
         [JsonConverter(typeof(UnixDateTimeConverter))]
@@ -154,7 +154,7 @@ namespace Chatwork.Service
     {
         public int file_id { get; set; }
         public AccountModel account { get; set; }
-        public int message_id { get; set; }
+        public long message_id { get; set; }
         public string filename { get; set; }
         public int filesize { get; set; }
         [JsonProperty]
