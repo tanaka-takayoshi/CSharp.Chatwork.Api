@@ -4,7 +4,7 @@
     <Description>Chatwork API Client</Description>
     <AssemblyTitle>Chatwork.Api</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>0.6.2</VersionPrefix>
+    <VersionPrefix>0.6.2$(VersionSuffix)</VersionPrefix>
     <Authors>Takayoshi Taknaka</Authors>
     <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
