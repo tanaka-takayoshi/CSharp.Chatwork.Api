@@ -12,7 +12,7 @@ Chatwork API for C#
 ## TODO
 
 - validation
-
+ 
 v1.0 included below features will be realesed after Chatwork API will become GA.
 - Rename property name to Pascal case.
 - Refactor model class.
