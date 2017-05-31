@@ -1,7 +1,7 @@
 CSharp.Chatwork.Api
 ===================
 
-![Build Status](https://tanaka733.visualstudio.com/DefaultCollection/_apis/public/build/definitions/8ee4bdd6-2ff2-4f5b-aaaf-ec302160ce7b/1/badge)
+[![Build status](https://ci.appveyor.com/api/projects/status/85d5g3hnkv1i3lid?svg=true)](https://ci.appveyor.com/project/tanaka-takayoshi/csharp-chatwork-api-0yttj)
 
 Chatwork API for C#
 
@@ -20,12 +20,9 @@ https://ci.appveyor.com/nuget/csharp-chatwork-api-45ofyih8s522
 Please don't use this feed for production usage. This feed provides development package only and may be changed url or version suffix.
 
 ## TODO
-===================
+
 - validation
-- Improve allignment for .NET Core 
 
 v1.0 included below features will be realesed after Chatwork API will become GA.
 - Rename property name to Pascal case.
 - Refactor model class.
-
-=======
