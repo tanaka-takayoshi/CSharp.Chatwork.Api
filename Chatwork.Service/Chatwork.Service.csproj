@@ -4,9 +4,9 @@
     <Description>Chatwork API Client</Description>
     <AssemblyTitle>Chatwork.Api</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>0.6.2</VersionPrefix>
-    <Authors>Takayoshi Taknaka</Authors>
-    <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
+    <VersionPrefix>0.6.3</VersionPrefix>
+    <Authors>Takayoshi Tanaka</Authors>
+    <TargetFrameworks>netstandard2.0;net45;netcoreapp1.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugType>portable</DebugType>
     <AssemblyName>Chatwork.Api</AssemblyName>
@@ -17,7 +17,6 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/tanaka-takayoshi/CSharp.Chatwork.Api/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/tanaka-takayoshi/CSharp.Chatwork.Api</RepositoryUrl>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
