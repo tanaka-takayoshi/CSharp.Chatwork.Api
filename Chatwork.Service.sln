@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatwork.Service", "Chatwork.Service\Chatwork.Service.csproj", "{D3640566-F1D8-4C02-8AE4-05BA99A947D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatwork.Service.ConsoleApp", "Chatwork.Service.ConsoleApp\Chatwork.Service.ConsoleApp.csproj", "{394824BD-5678-4719-920B-D6981593B767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatwork.Service", "Chatwork.Service\Chatwork.Service.csproj", "{D3640566-F1D8-4C02-8AE4-05BA99A947D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chatwork.Service.Cmdlets", "Chatwork.Service.Cmdlets\Chatwork.Service.Cmdlets.csproj", "{25093976-1768-4E79-8292-5134DB713F29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D33B3C67-627A-4AEC-B6CA-8480DFAF5845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Chatwork.Net45.ConsoleApp", "test\CSharp.Chatwork.Net45.ConsoleApp\CSharp.Chatwork.Net45.ConsoleApp.csproj", "{6B24988C-1470-40B4-A870-7CDBC6927746}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Chatwork.Net461.ConsoleApp", "test\CSharp.Chatwork.Net461.ConsoleApp\CSharp.Chatwork.Net461.ConsoleApp.csproj", "{9A65F443-575B-4BB5-80B7-10DAEF1B1537}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharp.Chatwork.NetCore20.ConsoleApp", "test\CSharp.Chatwork.NetCore20.ConsoleApp\CSharp.Chatwork.NetCore20.ConsoleApp.csproj", "{54C14D6F-8EBE-4B51-BFA2-AF0DF0737469}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp.Chatwork.NetCore10.ConsoleApp", "test\CSharp.Chatwork.NetCore10.ConsoleApp\CSharp.Chatwork.NetCore10.ConsoleApp.csproj", "{7794B2B9-CF54-415B-AA65-0B45BBE761ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +27,37 @@ Global
 		{D3640566-F1D8-4C02-8AE4-05BA99A947D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3640566-F1D8-4C02-8AE4-05BA99A947D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3640566-F1D8-4C02-8AE4-05BA99A947D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{394824BD-5678-4719-920B-D6981593B767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{394824BD-5678-4719-920B-D6981593B767}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{394824BD-5678-4719-920B-D6981593B767}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{394824BD-5678-4719-920B-D6981593B767}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25093976-1768-4E79-8292-5134DB713F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25093976-1768-4E79-8292-5134DB713F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25093976-1768-4E79-8292-5134DB713F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25093976-1768-4E79-8292-5134DB713F29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B24988C-1470-40B4-A870-7CDBC6927746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B24988C-1470-40B4-A870-7CDBC6927746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B24988C-1470-40B4-A870-7CDBC6927746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B24988C-1470-40B4-A870-7CDBC6927746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A65F443-575B-4BB5-80B7-10DAEF1B1537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A65F443-575B-4BB5-80B7-10DAEF1B1537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A65F443-575B-4BB5-80B7-10DAEF1B1537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A65F443-575B-4BB5-80B7-10DAEF1B1537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C14D6F-8EBE-4B51-BFA2-AF0DF0737469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C14D6F-8EBE-4B51-BFA2-AF0DF0737469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C14D6F-8EBE-4B51-BFA2-AF0DF0737469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C14D6F-8EBE-4B51-BFA2-AF0DF0737469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7794B2B9-CF54-415B-AA65-0B45BBE761ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7794B2B9-CF54-415B-AA65-0B45BBE761ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7794B2B9-CF54-415B-AA65-0B45BBE761ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7794B2B9-CF54-415B-AA65-0B45BBE761ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B24988C-1470-40B4-A870-7CDBC6927746} = {D33B3C67-627A-4AEC-B6CA-8480DFAF5845}
+		{9A65F443-575B-4BB5-80B7-10DAEF1B1537} = {D33B3C67-627A-4AEC-B6CA-8480DFAF5845}
+		{54C14D6F-8EBE-4B51-BFA2-AF0DF0737469} = {D33B3C67-627A-4AEC-B6CA-8480DFAF5845}
+		{7794B2B9-CF54-415B-AA65-0B45BBE761ED} = {D33B3C67-627A-4AEC-B6CA-8480DFAF5845}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39F7556A-97E0-4C96-9C4D-32C4312D1EB6}
 	EndGlobalSection
 EndGlobal
