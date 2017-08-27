@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#if net45
 using System.Configuration;
+#else
+using Microsoft.Extensions.Configuration;
+using System.IO;
+#endif
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chatwork.Service.ConsoleApp
 {
@@ -11,7 +13,16 @@ namespace Chatwork.Service.ConsoleApp
     {
         static void Main(string[] args)
         {
+#if net45
             var token = ConfigurationManager.AppSettings["Token"];
+#else
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("usersettings.json");
+            var configuration = builder.Build();
+            var token = configuration["Token"];
+#endif
+            
             if (string.IsNullOrEmpty(token))
             {
                 Console.WriteLine("Input auth key:");
@@ -23,7 +34,17 @@ namespace Chatwork.Service.ConsoleApp
 
             Console.WriteLine("あなたの所属:{0},氏名:{1},ID:{2}", me.organization_name, me.name, me.account_id);
 
-            var users = client.Room.GetRoomMembersAsync(2962030).Result;
+            var rooms = client.Room.GetAsync().Result;
+            Console.WriteLine();
+            Console.WriteLine("ルーム一覧");
+            rooms.OrderBy(r => r.room_id).Select(r => string.Format("{0}:{1}", r.room_id, r.name)).ToList().ForEach(Console.WriteLine);
+            Console.WriteLine();
+
+            var mychat = rooms.First(r => r.type == "my");
+            Console.WriteLine("マイチャットのIDは{0}です", mychat.room_id);
+            Console.WriteLine();
+
+            var users = client.Room.GetRoomMembersAsync(mychat.room_id).Result;
             users.Select(u => u.account_id + " " + u.name)
                 .ToList()
                 .ForEach(Console.WriteLine);
@@ -38,16 +59,7 @@ namespace Chatwork.Service.ConsoleApp
 
             var contacs = client.Contract.GetAsync().Result;
             Console.WriteLine("あなたのコンタクトには{0}人登録されいます", contacs.Count);
-
-            var rooms = client.Room.GetAsync().Result;
-            Console.WriteLine();
-            Console.WriteLine("ルーム一覧");
-            rooms.OrderBy(r => r.room_id).Select(r => string.Format("{0}:{1}", r.room_id, r.name)).ToList().ForEach(Console.WriteLine);
-            Console.WriteLine();
-            var mychat = rooms.First(r => r.type == "my");
-            Console.WriteLine("マイチャットのIDは{0}です", mychat.room_id);
-            Console.WriteLine();
-
+                   
             var sentMessage = client.Room.SendMessgesAsync(mychat.room_id, "テスト投稿").Result;
             Console.WriteLine("マイチャットにテスト投稿しました");
             var message = client.Room.GetMessageAsync(mychat.room_id, sentMessage.message_id).Result;
@@ -64,10 +76,10 @@ namespace Chatwork.Service.ConsoleApp
             var fileWithUrl = client.Room.GetFilAsync(mychat.room_id, files.First().file_id, true).Result;
             Console.WriteLine("ダウロードURL(30sec有効): " + fileWithUrl.download_url);
 
-            var messages = client.Room.GetMessagesAsync(6853423).Result;
+            var messages = client.Room.GetMessagesAsync(mychat.room_id).Result;
             Console.WriteLine(string.Join("\r\n", messages.Select(m => m.message_id + " " + m.body)));
-            
-            messages = client.Room.GetMessagesAsync(6853423, true).Result;
+
+            messages = client.Room.GetMessagesAsync(mychat.room_id, true).Result;
             Console.WriteLine(string.Join("\r\n", messages.Select(m => m.message_id + " " + m.body)));
             Console.WriteLine("何かキーを押して終了してください...");
             Console.ReadKey();

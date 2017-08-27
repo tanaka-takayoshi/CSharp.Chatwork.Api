@@ -1,0 +1,4 @@
+﻿#replace YourToken, remove this comment line and rename this file to usersettings.json
+{
+  "Token": "YourToken"
+}
